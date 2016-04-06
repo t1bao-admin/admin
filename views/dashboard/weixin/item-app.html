@@ -1,0 +1,20 @@
+<br/>
+<div class="col-xs-12 col-md-12">
+  <form class="form-horizontal app" method="post">
+    <div class="form-group">
+      <label for="id">App Id</label>
+      <input type="text" name="id" ng-model="app.id" class="form-control" id="id" placeholder="App Id" value="">
+    </div>
+    <div class="form-group">
+      <label for="secret">App Secret</label>
+      <input type="text" name="secret" ng-model="app.secret" class="form-control" id="secret" placeholder="App Secret" value="">
+    </div>
+    <div class="form-group">
+      <label for="token">App Token</label>
+      <input type="text" name="token" ng-model="app.token" class="form-control" id="token" placeholder="App Token" value="">
+    </div>
+    <hr/>
+    <button type="submit" class="btn btn-default btn-block btn-success" ng-click="set('app')">提交</button>
+    <hr/>
+  </form>
+</div>

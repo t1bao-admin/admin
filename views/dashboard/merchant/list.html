@@ -24,6 +24,7 @@ TODO: Add approval actions, and filters to merchants
         <tr>
           <th>ID</th>
           <th>商家名</th>
+          <th>管理员</th>
           <th>地址</th>
           <th>描述/介绍</th>
           <th>营业时间</th>
@@ -32,27 +33,33 @@ TODO: Add approval actions, and filters to merchants
           <th>操作</th>
         </tr>
         <tr ng-repeat="merchant in merchants track by $index">
-          <td>{{merchant.id}}</td>
-          <td>{{merchant.name}}</td>
-          <td>{{merchant.address}}</td>
-          <td>{{merchant.intro}}</td>
-          <th>{{merchant.start_time}}-{{merchant.end_time}}</th>
+          <td>{{merchant.store.id}}</td>
+          <td>{{merchant.store.name}}</td>
+          <td>{{merchant.user.username}}</td>
+          <td>{{merchant.store.address}}</td>
+          <td>{{merchant.store.intro}}</td>
+          <th>{{merchant.store.start_time}}-{{merchant.store.end_time}}</th>
           <td><span ng-repeat="image in merchant.images"
                     class="imgs{{merchant.sis[$index]}}"><a
             ng-href="{{image.url}}" target="_blank"><img
             ng-src="{{image.url}}" alt="{{image.hash}}" height="50px"/></a>&nbsp;</span>
           </td>
-          <td>
-            {{merchant.approved ? '已经审核' : ''}}
+          <td ng-switch on="merchant.store.approved">
+            <span ng-switch-when="APPROVED">审核通过</span>
+            <span ng-switch-when="REJECTED">审核未通过</span>
+            <span ng-switch-when="UNCHECKED">尚未审核</span>
+            <span ng-switch-default>尚未审核1</span>
           </td>
           <td>
-            <button class="btn btn-warning" ng-show="!merchant.approved"
-                    ng-click="approve(merchant);$event.stopPropagation()">上线
+            <button class="btn btn-warning"
+                    ng-click="approve(merchant, 'APPROVED');$event.stopPropagation()">通过
             </button>
-            <button class="btn btn-success" ng-show="merchant.approved"
-                    ng-click="reject(merchant);$event.stopPropagation()">下线
+            <button class="btn btn-success"
+                    ng-click="approve(merchant, 'REJECTED');$event.stopPropagation()">拒绝
             </button>
-
+            <button class="btn btn-success"
+                    ng-click="approve(merchant, 'UNCHECKED');$event.stopPropagation()">重置
+            </button>
             <button class="btn btn-info" data-toggle="modal"
                     data-target="#modify"
                     ng-click="openModify(merchant)">修改

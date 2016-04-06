@@ -11,51 +11,39 @@
     <div class="col-md-10">
       <h4 class="text-center">微信支付设置
       </h4>
+      <div class="alert alert-success" role="alert" ng-show="updated">更新成功!</div>
       <br/>
-      <form class="form-horizontal weixin">
-        <div class="form-group">
-          <label for="app-id" class="col-sm-2 control-label">App ID</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="app-id" ng-model="weixin.app_id" name="app_id" placeholder="App Id">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="app-secret" class="col-sm-2 control-label">App Secret</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="app-secret" ng-model="weixin.app_secret" name="app_secret" placeholder="App Secret">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="app-token" class="col-sm-2 control-label">App Token</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="app-token" ng-model="weixin.app_token" name="app_token" placeholder="App Token">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="merchant-id" class="col-sm-2 control-label">商家ID</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="merchant-id" ng-model="weixin.merchant_id" name="merchant_id" placeholder="Merchant ID">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="merchant-key" class="col-sm-2 control-label">商家Key</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="merchant-key" ng-model="weixin.merchant_key" name="merchant_key" placeholder="Merchant Key">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="merchant_pfx" class="col-sm-2 control-label">签名文件(.p12)</label>
-          <div class="col-sm-10">
-            <input type="file" class="form-control" id="merchant_pfx" name="merchant_pfx" accept=".p12" placeholder="签名文件">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default btn-success btn-block" ng-click="weixinSet()">设置</button>
-          </div>
-        </div>
-      </form>
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a data-target="app" role="tab" data-toggle="tab">app基本设置</a></li>
+        <li role="presentation"><a data-target="oauth" role="tab" data-toggle="tab">Oauth配置</a></li>
+        <li role="presentation"><a data-target="merchant" role="tab" data-toggle="tab">商户信息配置</a></li>
+        <li role="presentation"><a data-target="certificate" role="tab" data-toggle="tab">证书匹配</a></li>
+        <li role="presentation"><a data-target="message" role="tab" data-toggle="tab">消息配置</a></li>
+        <li role="presentation"><a data-target="server" role="tab" data-toggle="tab">服务器配置</a></li>
+        <li role="presentation"><a data-target="urls" role="tab" data-toggle="tab">自动处理URL地址配置</a></li>
+        <!-- <li role="presentation"><a data-target="pages" role="tab" data-toggle="tab">交互页面URL配置</a></li> -->
+      </ul>
 
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="app" ng-include src="'views/dashboard/weixin/item-app.html'">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="merchant" ng-include src="'views/dashboard/weixin/item-merchant.html'">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="message" ng-include src="'views/dashboard/weixin/item-message.html'">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="oauth" ng-include src="'views/dashboard/weixin/item-oauth.html'">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="certificate" ng-include src="'views/dashboard/weixin/item-certificate.html'">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="server" ng-include src="'views/dashboard/weixin/item-server.html'">
+        </div>
+        <!-- <div role="tabpanel" class="tab-pane" id="pages" ng-include src="'views/dashboard/weixin/item-pages.html'">
+        </div> -->
+        <div role="tabpanel" class="tab-pane" id="urls" ng-include src="'views/dashboard/weixin/item-urls.html'">
+        </div>
+      </div>
     </div>
   </div>
 </div>
