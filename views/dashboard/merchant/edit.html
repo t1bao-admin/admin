@@ -4,59 +4,110 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h3 class="modal-title">修改商品</h3>
+        <h3 class="modal-title">修改用户</h3>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal merchandise modify" role="form"
-              enctype="multipart/form-data">
-          <input type="hidden" name="id" value="{{merchandise.id}}" ng-model="merchandise.id"/>
-
+        <form class="form-horizontal merchant modify" role="form" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="{{merchant.id}}"/>
           <div class="form-group">
-            <label for="mod-name" class="col-sm-2 control-label">商品名称<span>*</span></label>
+            <label for="mod-email" class="col-sm-2 control-label">email地址<br/><span>(必填)</span></label>
 
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="mod-name" name="name"
-                     placeholder="请输入商品名称" ng-model="merchandise.name">
+              <input type="text" class="form-control" id="mod-email" name="email"
+                     placeholder="请输入电子邮件地址" value="{{merchant.email}}">
             </div>
           </div>
           <div class="form-group">
-            <label for="mod-desc" class="col-sm-2 control-label">介绍</label>
+            <label for="mod-phone" class="col-sm-2 control-label">手机/电话<br/></label>
 
             <div class="col-sm-10">
-                            <textarea class="form-control" rows="3" id="mod-desc" name="desc"
-                                      placeholder="请输入介绍信息" ng-model="merchandise.desc"></textarea>
+              <input type="text" class="form-control" id="mod-phone" name="phone"
+                     placeholder="请输入手机/电话号码" value="{{merchant.phone}}">
             </div>
           </div>
           <div class="form-group">
-            <label for="mod-brand" class="col-sm-2 control-label">品牌</label>
+            <label for="mod-merchantname" class="col-sm-2 control-label">用户名</label>
 
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="mod-brand" name="brand"
-                     placeholder="请输入品牌" ng-model="merchandise.brand"/>
+              <input type="text" class="form-control" id="mod-merchantname" name="merchantname"
+                     placeholder="请输入用户名" value="{{merchant.merchantname}}">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">性别</label>
+
+            <div class="col-sm-10">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="gender" value="1"> 男
+                </label>
+                <label>
+                  <input type="radio" name="gender" value="2"> 女
+                </label>
+                <label>
+                  <input type="radio" name="gender" value="3"> 其它
+                </label>
+              </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="mod-file" class="col-sm-2 control-label">图片</label>
+            <label for="mod-birthday" class="col-sm-2 control-label">生日</label>
 
             <div class="col-sm-10">
-              <img ng-repeat="image in merchandise.images track by $index" ng-src="{{image.url}}"
-                   class="merchandise-edit-image-{{merchandise.sis[$index]}}"
-                   ng-click="removeImage(merchandise.sis[$index])"
-                   height="80px" style="padding: 2px"/>
-              <input type="file" class="form-control" id="mod-file"
-                     name="image" placeholder="请选择图片">
+              <input type="date" class="form-control" id="mod-birthday" name="birthday"
+                     placeholder="" value="{{merchant.birthday}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mod-score" class="col-sm-2 control-label">积分</label>
+
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="mod-score" name="score"
+                     placeholder="请输入积分" value="{{merchant.score}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mod-idcard" class="col-sm-2 control-label">身份证号</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="mod-idcard" name="idcard"
+                     placeholder="请输入身份证号" value="{{merchant.idcard}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mod-no" class="col-sm-2 control-label">会员卡号</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="mod-no" name="no"
+                     placeholder="请输入会员卡号" value="{{merchant.no}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mod-address" class="col-sm-2 control-label">地址</label>
+
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="mod-address"
+                     name="address" placeholder="请地址信息" value="{{merchant.address}}"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mod-intro" class="col-sm-2 control-label">介绍</label>
+
+            <div class="col-sm-10">
+                            <textarea class="form-control" id="mod-intro"
+                                      name="intro" placeholder="请输入简介">{{merchant.intro}}</textarea>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button type="button" class="btn btn-primary" ng-click="modify()">修改</button>
+              <button type="button" class="btn btn-default" ng-click="modify()">修改</button>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-default" data-dismiss="modal">返回</button>
-        <!--<button class="btn btn-primary" ng-click="add()">添加</button>-->
+        <button class="btn btn-primary" data-dismiss="modal">返回</button>
       </div>
 
     </div>
@@ -64,3 +115,4 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
+<!-- /.modal -->
