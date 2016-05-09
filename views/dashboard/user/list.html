@@ -35,9 +35,10 @@
           <td>{{user.email}}</td>
           <td>{{user.phone}}</td>
           <td>{{user.time | date}}</td>
-          <td>{{user.ip}}</td>
+          <td>{{user.ip}}<br/>{{user.ip_info.Country}}<br/>{{user.ip_info.Area}}
+          </td>
           <td>{{user.last_time | date}}</td>
-          <td>{{user.last_ip}}</td>
+          <td>{{user.last_ip}}<br/>{{user.last_ip_info.Country}}<br/>{{user.last_ip_info.Area}}</td>
           <td>{{user.login_count || 0}}</td>
           <td>
             <a class="btn btn-default" data-toggle="modal" data-target="#modify" ng-click="openModify(user)">修改
