@@ -24,48 +24,55 @@ TODO: Add approval actions, and filters to grocerys
         <tr>
           <th>ID</th>
           <th>商家名</th>
-          <th>管理员</th>
           <th>地址</th>
           <th>描述/介绍</th>
           <th>营业时间</th>
           <th>图片</th>
-          <th>审核通过</th>
-          <th>操作</th>
         </tr>
-        <tr ng-repeat="grocery in groceries track by $index">
-          <td>{{grocery.store.id}}</td>
-          <td>{{grocery.store.name}}</td>
-          <td>{{grocery.user.username}}</td>
+        <tr ng-repeat-start="grocery in groceries track by $index">
+          <td rowspan="4">{{grocery.store.id}}</td>
+          <td><a target="_blank" href="http://grocery.t1bao.com/?id={{grocery.store.id}}">{{grocery.store.name}}</a></td>
           <td>{{grocery.store.address}}</td>
           <td>{{grocery.store.intro}}</td>
           <th>{{grocery.store.start_time}}-{{grocery.store.end_time}}</th>
-          <td><span ng-repeat="image in grocery.images"
-                    class="imgs{{grocery.sis[$index]}}"><a
+          <td><span ng-repeat="image in grocery.images" class="imgs{{grocery.sis[$index]}}"><a
             ng-href="{{image.url}}" target="_blank"><img
             ng-src="{{image.url}}" alt="{{image.hash}}" height="50px"/></a>&nbsp;</span>
           </td>
+        </tr>
+        <tr>
+          <th>管理员</th>
+          <td><a href="">{{grocery.merchant.username}}</a></td>
+          <th></th>
+          <td colspan="2">
+          </td>
+        </tr>
+        <tr>
+          <th>审核状态</th>
           <td ng-switch on="grocery.store.approved">
             <span ng-switch-when="APPROVED">审核通过</span>
             <span ng-switch-when="REJECTED">审核未通过</span>
             <span ng-switch-when="UNCHECKED">尚未审核</span>
             <span ng-switch-default>尚未审核1</span>
           </td>
-          <td>
-            <button class="btn btn-warning"
-                    ng-click="approve(grocery, 'APPROVED');$event.stopPropagation()">通过
+          <th>审核操作</th>
+          <td colspan="2">
+            <button class="btn btn-warning" ng-click="approve(grocery, 'APPROVED');$event.stopPropagation()">通过
             </button>
-            <button class="btn btn-success"
-                    ng-click="approve(grocery, 'REJECTED');$event.stopPropagation()">拒绝
+            <button class="btn btn-success" ng-click="approve(grocery, 'REJECTED');$event.stopPropagation()">拒绝
             </button>
-            <button class="btn btn-success"
-                    ng-click="approve(grocery, 'UNCHECKED');$event.stopPropagation()">重置
+            <button class="btn btn-success" ng-click="approve(grocery, 'UNCHECKED');$event.stopPropagation()">重置
             </button>
-            <button class="btn btn-info" data-toggle="modal"
-                    data-target="#modify"
-                    ng-click="openModify(grocery)">修改
+          </td>
+        </tr>
+        <tr ng-repeat-end>
+          <th>操作</th>
+          <td colspan="4">
+            <button class="btn btn-success" ng-click="copy(grocery);$event.stopPropagation()">复制
             </button>
-            <button class="btn btn-danger"
-                    ng-click="remove(grocery);$event.stopPropagation()">删除
+            <button class="btn btn-info" data-toggle="modal" data-target="#modify" ng-click="openModify(grocery)">修改
+            </button>
+            <button class="btn btn-danger" ng-click="remove(grocery);$event.stopPropagation()">删除
             </button>
           </td>
         </tr>
