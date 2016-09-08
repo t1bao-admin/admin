@@ -12,11 +12,11 @@ TODO: Add approval actions, and filters to grocerys
       </div>
     </div>
     <div class="col-md-10 col-sm-10">
-      <h4 class="text-center">商店管理
+      <h4 class="text-center">商家复制
         <form class="navbar-form navbar-right">
           <p>
-            <a class="btn btn-primary" data-toggle="modal" data-target="#add">
-              添加商家</a>
+            <a class="btn btn-primary" href="#/dashboard/grocery/list/1">
+              返回</a>
           </p>
         </form>
       </h4>
@@ -30,7 +30,7 @@ TODO: Add approval actions, and filters to grocerys
           <th>图片</th>
         </tr>
         <tr ng-repeat-start="grocery in groceries track by $index">
-          <td rowspan="4">{{grocery.store.id}}</td>
+          <td rowspan="3">{{grocery.store.id}}</td>
           <td><a target="_blank" href="http://grocery.t1bao.com/?id={{grocery.store.id}}">{{grocery.store.name}}</a></td>
           <td>{{grocery.store.address}}</td>
           <td>{{grocery.store.intro}}</td>
@@ -47,32 +47,10 @@ TODO: Add approval actions, and filters to grocerys
           <td colspan="2">
           </td>
         </tr>
-        <tr>
-          <th>审核状态</th>
-          <td ng-switch on="grocery.store.approved">
-            <span ng-switch-when="APPROVED">审核通过</span>
-            <span ng-switch-when="REJECTED">审核未通过</span>
-            <span ng-switch-when="UNCHECKED">尚未审核</span>
-            <span ng-switch-default>尚未审核1</span>
-          </td>
-          <th>审核操作</th>
-          <td colspan="2">
-            <button class="btn btn-warning" ng-click="approve(grocery, 'APPROVED');$event.stopPropagation()">通过
-            </button>
-            <button class="btn btn-success" ng-click="approve(grocery, 'REJECTED');$event.stopPropagation()">拒绝
-            </button>
-            <button class="btn btn-success" ng-click="approve(grocery, 'UNCHECKED');$event.stopPropagation()">重置
-            </button>
-          </td>
-        </tr>
         <tr ng-repeat-end>
           <th>操作</th>
           <td colspan="4">
-            <a class="btn btn-success" href="#/dashboard/copy/{{grocery.id}}">复制
-            </a>
-            <button class="btn btn-info" data-toggle="modal" data-target="#modify" ng-click="openModify(grocery)">修改
-            </button>
-            <button class="btn btn-danger" ng-click="remove(grocery);$event.stopPropagation()">删除
+            <button class="btn btn-success" ng-click="copyConfirm(grocery);$event.stopPropagation()">确定复制
             </button>
           </td>
         </tr>
