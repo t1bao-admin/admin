@@ -35,11 +35,11 @@
           <td>{{merchant.email}}</td>
           <td>{{merchant.phone}}</td>
           <td>{{merchant.time | date}}</td>
-          <td>{{merchant.ip}}<br/>{{merchant.ip_info.Country}}<br/>{{merchant.ip_info.Area}}
-          <td>{{merchant.last_time | date}}</td>
-          <td>{{merchant.last_ip}}<br/>{{merchant.last_ip_info.Country}}<br/>{{merchant.last_ip_info.Area}}</td>
+          <td>{{merchant.ip}}<br/>{{merchant.ipInfo.Country}}<br/>{{merchant.ipInfo.Area}}
+          <td>{{merchant.lastTime | date}}</td>
+          <td>{{merchant.lastIp}}<br/>{{merchant.lastIpInfo.Country}}<br/>{{merchant.lastIpInfo.Area}}</td>
 
-          <td>{{merchant.login_count || 0}}</td>
+          <td>{{merchant.loginCount || 0}}</td>
           <td>
             <a class="btn btn-default" data-toggle="modal" data-target="#modify" ng-click="openModify(merchant)">修改
             </a>
