@@ -22,12 +22,12 @@ TODO: Add approval actions, and filters to grocerys
       </h4>
       <table class="table table-striped text-center">
         <tr>
-          <th>ID</th>
-          <th>商家名</th>
-          <th>地址</th>
-          <th>描述/介绍</th>
-          <th>营业时间</th>
-          <th>图片</th>
+          <th class="text-center">ID</th>
+          <th class="text-center">商家名</th>
+          <th class="text-center">地址</th>
+          <th class="text-center">描述/介绍</th>
+          <th class="text-center">营业时间</th>
+          <th class="text-center">图片</th>
         </tr>
         <tr ng-repeat-start="grocery in groceries track by $index">
           <td rowspan="4">{{grocery.store.id}}</td>
@@ -43,8 +43,10 @@ TODO: Add approval actions, and filters to grocerys
         <tr>
           <th>管理员</th>
           <td><a href="">{{grocery.merchant.username}}</a></td>
-          <th></th>
+          <th>微信配置</th>
           <td colspan="2">
+            <a ng-show="grocery.store" class="btn btn-success" href="#/dashboard/grocery/weixin/{{grocery.store.id}}/{{page}}">配置
+            </a>
           </td>
         </tr>
         <tr>
