@@ -5,84 +5,84 @@ TODO: Add approval actions, and filters to grocerys
 -->
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-2 col-sm-2">
-      <div class="list-group">
-        <div ng-include src="'views/dashboard/sidebar.html'"></div>
-      </div>
-    </div>
-    <div class="col-md-10 col-sm-10">
-      <h4 class="text-center">商店管理
-        <form class="navbar-form navbar-right">
-          <p>
-            <a class="btn btn-primary" data-toggle="modal" data-target="#add">
+	<div class="row">
+		<div class="col-md-2 col-sm-2">
+			<div class="list-group">
+				<div ng-include src="'views/dashboard/sidebar.html'"></div>
+			</div>
+		</div>
+		<div class="col-md-10 col-sm-10">
+			<h4 class="text-center">商店管理
+				<form class="navbar-form navbar-right">
+					<p>
+						<a class="btn btn-primary" data-toggle="modal" data-target="#add">
               添加商家</a>
-          </p>
-        </form>
-      </h4>
-      <table class="table table-striped text-center">
-        <tr>
-          <th class="text-center">ID</th>
-          <th class="text-center">商家名</th>
-          <th class="text-center">地址</th>
-          <th class="text-center">描述/介绍</th>
-          <th class="text-center">营业时间</th>
-          <th class="text-center">图片</th>
-        </tr>
-        <tr ng-repeat-start="grocery in groceries track by $index">
-          <td rowspan="4">{{grocery.store.id}}</td>
-          <td><a target="_blank" href="http://grocery.t1bao.com/?id={{grocery.store.id}}">{{grocery.store.name}}</a></td>
-          <td>{{grocery.store.address}}</td>
-          <td>{{grocery.store.intro}}</td>
-          <th>{{grocery.store.start_time}}-{{grocery.store.end_time}}</th>
-          <td><span ng-repeat="image in grocery.images" class="imgs{{grocery.sis[$index]}}"><a
+					</p>
+				</form>
+			</h4>
+			<table class="table table-striped text-center">
+				<tr>
+					<th class="text-center">ID</th>
+					<th class="text-center">商家名</th>
+					<th class="text-center">地址</th>
+					<th class="text-center">描述/介绍</th>
+					<th class="text-center">营业时间</th>
+					<th class="text-center">图片</th>
+				</tr>
+				<tr ng-repeat-start="grocery in groceries track by $index">
+					<td rowspan="4">{{grocery.store.id}}</td>
+					<td><a target="_blank" href="http://grocery.t1bao.com/?id={{grocery.store.id}}">{{grocery.store.name}}</a></td>
+					<td>{{grocery.store.address}}</td>
+					<td>{{grocery.store.intro}}</td>
+					<th>{{grocery.store.start_time}}-{{grocery.store.end_time}}</th>
+					<td><span ng-repeat="image in grocery.images" class="imgs{{grocery.sis[$index]}}"><a
             ng-href="{{image.url}}" target="_blank"><img
             ng-src="{{image.url}}" alt="{{image.hash}}" height="50px"/></a>&nbsp;</span>
-          </td>
-        </tr>
-        <tr>
-          <th>管理员</th>
-          <td><a href="">{{grocery.merchant.username}}</a></td>
-          <th>微信配置</th>
-          <td colspan="2">
-            <a ng-show="grocery.store" class="btn btn-success" href="#/dashboard/grocery/weixin/{{grocery.store.id}}/{{page}}">配置
+					</td>
+				</tr>
+				<tr>
+					<th>管理员</th>
+					<td><a href="">{{grocery.merchant.username}}</a></td>
+					<th>微信配置</th>
+					<td colspan="2">
+						<a ng-show="grocery.store" class="btn btn-success" href="#/dashboard/grocery/weixin/{{grocery.store.id}}/{{page}}">配置
             </a>
-          </td>
-        </tr>
-        <tr>
-          <th>审核状态</th>
-          <td ng-switch on="grocery.store.approved">
-            <span ng-switch-when="APPROVED">审核通过</span>
-            <span ng-switch-when="REJECTED">审核未通过</span>
-            <span ng-switch-when="UNCHECKED">尚未审核</span>
-            <span ng-switch-default>尚未审核1</span>
-          </td>
-          <th>审核操作</th>
-          <td colspan="2">
-            <button class="btn btn-warning" ng-click="approve(grocery, 'APPROVED');$event.stopPropagation()">通过
+					</td>
+				</tr>
+				<tr>
+					<th>审核状态</th>
+					<td ng-switch on="grocery.store.approved">
+						<span ng-switch-when="APPROVED">审核通过</span>
+						<span ng-switch-when="REJECTED">审核未通过</span>
+						<span ng-switch-when="UNCHECKED">尚未审核</span>
+						<span ng-switch-default>尚未审核1</span>
+					</td>
+					<th>审核操作</th>
+					<td colspan="2">
+						<button class="btn btn-warning" ng-click="approve(grocery, 'APPROVED');$event.stopPropagation()">通过
             </button>
-            <button class="btn btn-success" ng-click="approve(grocery, 'REJECTED');$event.stopPropagation()">拒绝
+						<button class="btn btn-success" ng-click="approve(grocery, 'REJECTED');$event.stopPropagation()">拒绝
             </button>
-            <button class="btn btn-success" ng-click="approve(grocery, 'UNCHECKED');$event.stopPropagation()">重置
+						<button class="btn btn-success" ng-click="approve(grocery, 'UNCHECKED');$event.stopPropagation()">重置
             </button>
-          </td>
-        </tr>
-        <tr ng-repeat-end>
-          <th>操作</th>
-          <td colspan="4">
-            <a class="btn btn-success" href="#/dashboard/copy/{{grocery.store.id}}/list/1">复制
+					</td>
+				</tr>
+				<tr ng-repeat-end>
+					<th>操作</th>
+					<td colspan="4">
+						<a class="btn btn-success" href="#/dashboard/copy/{{grocery.store.id}}/list/1">复制
             </a>
-            <button class="btn btn-info" data-toggle="modal" data-target="#modify" ng-click="openModify(grocery)">修改
+						<button class="btn btn-info" data-toggle="modal" data-target="#modify" ng-click="openModify(grocery)">修改
             </button>
-            <button class="btn btn-danger" ng-click="remove(grocery);$event.stopPropagation()">删除
+						<button class="btn btn-danger" ng-click="remove(grocery);$event.stopPropagation()">删除
             </button>
-          </td>
-        </tr>
-      </table>
-      <div ng-include src="'views/dashboard/pagination.html'"></div>
+					</td>
+				</tr>
+			</table>
+			<div ng-include src="'views/dashboard/pagination.html'"></div>
 
-    </div>
-  </div>
+		</div>
+	</div>
 </div>
 
 <div ng-include src="'views/dashboard/grocery/new.html'"></div>

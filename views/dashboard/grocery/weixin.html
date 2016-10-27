@@ -2,50 +2,72 @@
 
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-2">
-      <div class="list-group">
-        <div ng-include src="'views/dashboard/sidebar.html'"></div>
-      </div>
-    </div>
-    <div class="col-md-10">
-      <h4 class="text-center">微信支付设置
-      </h4>
-      <p><a href="#/dashboard/grocery/list/{{page}}" class="btn btn-primary">&lt;</a>
-      </p>
-      <div class="alert alert-success" role="alert" ng-show="updated">更新成功!</div>
-      <br/>
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
-          <a data-target="app" role="tab" data-toggle="tab">app基本设置</a></li>
-        <li role="presentation"><a data-target="oauth" role="tab" data-toggle="tab">Oauth配置</a></li>
-        <li role="presentation"><a data-target="merchant" role="tab" data-toggle="tab">商户信息配置</a></li>
-        <li role="presentation"><a data-target="certificate" role="tab" data-toggle="tab">证书匹配</a></li>
-        <li role="presentation"><a data-target="message" role="tab" data-toggle="tab">消息配置</a></li>
-        <li role="presentation"><a data-target="server" role="tab" data-toggle="tab">服务器配置</a></li>
-        <li role="presentation"><a data-target="urls" role="tab" data-toggle="tab">自动处理URL地址配置</a></li>
-        <!-- <li role="presentation"><a data-target="pages" role="tab" data-toggle="tab">交互页面URL配置</a></li> -->
-      </ul>
+	<div class="row">
+		<div class="col-md-2">
+			<div class="list-group">
+				<div ng-include src="'views/dashboard/sidebar.html'"></div>
+			</div>
+		</div>
+		<div class="col-md-10">
+			<h4 class="text-center">微信支付设置
+			</h4>
+			<p><a href="#/dashboard/grocery/list/{{page}}" class="btn btn-primary">&lt;</a>
+			</p>
+			<div class="alert alert-success" role="alert" ng-show="updated">更新成功!</div>
+			<br/>
+			<form class="form-inline">
+				<div class="form-group">
+					<label>商户ID</label>
+					<div class="input-group">
+						<input type="text" class="form-control" id="merchantId-{{grocery.store.id}}" name="merchantId" placeholder="输入微信商家ID" ng-model="grocery.weixin.merchantId"
+						/>
+						<span class="input-group-btn">
+							<button class="btn btn-default" ng-click="setMerchantId();$event.stopPropagation()">保存</button>
+            </span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>子商户开关</label>
+					<div class="input-group">
+						<button class="btn btn-primary" ng-show="!grocery.weixin.enable" ng-click="enableWeixin(true);$event.stopPropagation()">开通
+            </button>&nbsp;
+						<button class="btn btn-success"  ng-show="grocery.weixin.enable" ng-click="enableWeixin(false);$event.stopPropagation()">关闭
+            </button>
+					</div>
+				</div>
+			</form>
+			<br/>
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active">
+					<a data-target="app" role="tab" data-toggle="tab">app基本设置</a></li>
+				<li role="presentation"><a data-target="oauth" role="tab" data-toggle="tab">Oauth配置</a></li>
+				<li role="presentation"><a data-target="merchant" role="tab" data-toggle="tab">商户信息配置</a></li>
+				<li role="presentation"><a data-target="certificate" role="tab" data-toggle="tab">证书匹配</a></li>
+				<li role="presentation"><a data-target="message" role="tab" data-toggle="tab">消息配置</a></li>
+				<li role="presentation"><a data-target="server" role="tab" data-toggle="tab">服务器配置</a></li>
+				<li role="presentation"><a data-target="urls" role="tab" data-toggle="tab">自动处理URL地址配置</a></li>
+				<!-- <li role="presentation"><a data-target="pages" role="tab" data-toggle="tab">交互页面URL配置</a></li> -->
+			</ul>
 
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="app" ng-include src="'views/dashboard/weixin/item-app.html'">
-        </div>
-        <div role="tabpanel" class="tab-pane" id="merchant" ng-include src="'views/dashboard/weixin/item-merchant.html'">
-        </div>
-        <div role="tabpanel" class="tab-pane" id="message" ng-include src="'views/dashboard/weixin/item-message.html'">
-        </div>
-        <div role="tabpanel" class="tab-pane" id="oauth" ng-include src="'views/dashboard/weixin/item-oauth.html'">
-        </div>
-        <div role="tabpanel" class="tab-pane" id="certificate" ng-include src="'views/dashboard/weixin/item-certificate.html'">
-        </div>
-        <div role="tabpanel" class="tab-pane" id="server" ng-include src="'views/dashboard/weixin/item-server.html'">
-        </div>
-        <!-- <div role="tabpanel" class="tab-pane" id="pages" ng-include src="'views/dashboard/weixin/item-pages.html'">
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="app" ng-include src="'views/dashboard/weixin/item-app.html'">
+				</div>
+				<div role="tabpanel" class="tab-pane" id="merchant" ng-include src="'views/dashboard/weixin/item-merchant.html'">
+				</div>
+				<div role="tabpanel" class="tab-pane" id="message" ng-include src="'views/dashboard/weixin/item-message.html'">
+				</div>
+				<div role="tabpanel" class="tab-pane" id="oauth" ng-include src="'views/dashboard/weixin/item-oauth.html'">
+				</div>
+				<div role="tabpanel" class="tab-pane" id="certificate" ng-include src="'views/dashboard/weixin/item-certificate.html'">
+				</div>
+				<div role="tabpanel" class="tab-pane" id="server" ng-include src="'views/dashboard/weixin/item-server.html'">
+				</div>
+				<!-- <div role="tabpanel" class="tab-pane" id="pages" ng-include src="'views/dashboard/weixin/item-pages.html'">
         </div> -->
-        <div role="tabpanel" class="tab-pane" id="urls" ng-include src="'views/dashboard/weixin/item-urls.html'">
-        </div>
-      </div>
-    </div>
-  </div>
+				<div role="tabpanel" class="tab-pane" id="urls" ng-include src="'views/dashboard/weixin/item-urls.html'">
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
